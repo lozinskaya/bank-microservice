@@ -1,11 +1,26 @@
 import { Module } from '@nestjs/common';
+import { SequelizeModule } from '@nestjs/sequelize';
 
-import { CAppController } from './app.controller';
 import { CAppService } from './app.service';
+import { account } from './modules';
+
+const models = [...account.models];
+const modules = [...account.modules];
 
 @Module({
-  imports: [],
-  controllers: [CAppController],
+  imports: [
+    SequelizeModule.forRoot({
+      dialect: 'postgres',
+      host: process.env.POSTGRES_HOST,
+      port: +process.env.POSTGRES_PORT,
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
+      models,
+      autoLoadModels: false,
+    }),
+    ...modules,
+  ],
   providers: [CAppService],
 })
 export class CAppModule {}
