@@ -25,6 +25,16 @@ PORT=3000
 $ docker compose build && docker compose up
 ```
 
+## Тестирование
+
+```bash
+# Получение баланса по счёту
+$ curl -H Accept-encoding:application/json http://localhost:3000/account/12
+
+# Создание перевода
+$ curl -H Content-type:application/json -d '{"amount": 2}' -X POST http://localhost:3000/transfer/10/12           
+```
+
 ## Сделать коммит
 
 ```bash
