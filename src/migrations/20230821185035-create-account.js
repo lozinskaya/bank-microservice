@@ -5,11 +5,12 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface
       .createTable('Accounts', {
-        account_id: {
+        id: {
+          type: Sequelize.BIGINT,
           allowNull: false,
           autoIncrement: true,
           primaryKey: true,
-          type: Sequelize.BIGINT,
+          unique: true,
         },
         balance: {
           allowNull: false,
