@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const config = require('dotenv').config('.env').parsed;
+
 module.exports = {
   development: {
     dialect: 'postgres',
-    host: process.env.POSTGRES_HOST,
-    port: process.env.POSTGRES_PORT,
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
+    host: config.POSTGRES_HOST,
+    username: config.POSTGRES_USER,
+    password: config.POSTGRES_PASSWORD,
+    database: config.POSTGRES_DB,
     seederStorage: 'sequelize',
   },
 };

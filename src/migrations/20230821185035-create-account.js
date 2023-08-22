@@ -15,9 +15,6 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DECIMAL(12, 2),
         },
-        test: {
-          type: Sequelize.BOOLEAN,
-        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
