@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 
-import { CAppService } from './app.service';
 import { account } from './modules';
 
 const models = [...account.models];
@@ -20,6 +19,6 @@ const modules = [...account.modules];
     }),
     ...modules,
   ],
-  providers: [CAppService],
+  providers: [],
 })
 export class CAppModule {}
