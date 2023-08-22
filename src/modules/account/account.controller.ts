@@ -37,6 +37,7 @@ export class CAccountController {
   @Patch(':id')
   @ApiOperation({ summary: 'Изменение аккаунта по id' })
   @ApiParam({ name: 'id', type: Number, required: true, description: 'ID аккаунта' })
+  @ApiBody({ type: CCreateAccountDto, required: true, description: 'Описание аккаунта' })
   @ApiResponse({ status: HttpStatus.OK, description: 'Изменённый аккаунт', type: CAccountDto })
   update(@Param('id') id: number, @Body() dto: CUpdateAccountDto) {
     return this.accountService.update(id, dto);
