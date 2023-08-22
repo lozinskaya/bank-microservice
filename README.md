@@ -1,11 +1,11 @@
 ## Ссылки
 
-[Swagger UI](http://localhost:3000/api) - интерфейс описания API
+[Swagger UI](http://localhost:3000/api) - интерфейс описания API<br />
 [pgAdmin](http://localhost:80) - СУБД (email: lozik@tambler.ru, password: qwerty)
 
 ## Модули
 
-[Account](http://localhost:3000/account) - модуль для управления аккаунтами
+[Account](http://localhost:3000/account) - модуль для управления аккаунтами<br />
 [Transfer](http://localhost:3000/transfer) - модуль для переводов
 
 ## .ENV
