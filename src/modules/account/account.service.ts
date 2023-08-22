@@ -29,7 +29,11 @@ export class CAccountService {
     return account;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} account`;
+  async remove(id: number) {
+    const account = await this.accountRepository.findByPk(id);
+
+    await account?.destroy();
+
+    return { success: true };
   }
 }
