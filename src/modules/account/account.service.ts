@@ -21,8 +21,12 @@ export class CAccountService {
     return this.accountRepository.findByPk(id, { attributes: ['balance'] });
   }
 
-  update(id: number, dto: CUpdateAccountDto) {
-    return `This action updates a #${id} account`;
+  async update(id: number, dto: CUpdateAccountDto) {
+    const account = await this.accountRepository.findByPk(id);
+
+    await account?.update(dto);
+
+    return account;
   }
 
   remove(id: number) {

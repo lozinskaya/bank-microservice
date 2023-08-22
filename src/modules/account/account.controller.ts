@@ -24,8 +24,8 @@ export class CAccountController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAccountDto: CUpdateAccountDto) {
-    return this.accountService.update(+id, updateAccountDto);
+  update(@Param('id') id: number, @Body() dto: CUpdateAccountDto) {
+    return this.accountService.update(id, dto);
   }
 
   @Delete(':id')
