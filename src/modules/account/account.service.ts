@@ -14,7 +14,7 @@ export class CAccountService {
   }
 
   findAll() {
-    return `This action returns all account`;
+    return this.accountRepository.findAll();
   }
 
   findOne(id: number) {
