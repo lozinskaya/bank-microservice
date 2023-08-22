@@ -54,6 +54,22 @@ services:
     depends_on:
       - db
     env_file: ./.env
+  seed:
+    container_name: seed
+    build:
+      context: .
+    command:
+      [
+        "npx",
+        "sequelize-cli",
+        "db:seed:all"
+      ]
+    links:
+      - db
+    depends_on:
+      - db
+      - migration
+    env_file: ./.env
 
 volumes:
   db:
