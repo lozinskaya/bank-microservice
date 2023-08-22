@@ -18,7 +18,7 @@ export class CAccountService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} account`;
+    return this.accountRepository.findByPk(id, { attributes: ['balance'] });
   }
 
   update(id: number, dto: CUpdateAccountDto) {
