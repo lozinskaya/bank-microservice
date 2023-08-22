@@ -25,7 +25,9 @@ export class CTransferService {
 
         const balanceTarget = Number(targetAccount.balance) + amount;
 
-        return this.accountService.update(targetId, { balance: balanceTarget });
+        await this.accountService.update(targetId, { balance: balanceTarget });
+
+        return { message: 'Перевод выполнен успешно' };
       });
 
       return result;
