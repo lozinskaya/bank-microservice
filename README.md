@@ -31,3 +31,18 @@ $ docker compose build && docker compose up
 # conventional-commit
 $ git cz
 ```
+
+## Структура
+
+```
+    .
+    ├── src
+    |   ├── config
+    |      ├── db (настройки для базы данных)
+    |      ├── git(настройки для git)
+    |   ├── migrations (папка с миграциями)
+    |   └── modules
+    |      ├── account (модуль аккаунтов)
+    |      ├── transfer (модуль переводов)
+    |   └── seeders (папка с первоначальными данными для базы)
+    ```
