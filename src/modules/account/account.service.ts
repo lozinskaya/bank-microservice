@@ -10,24 +10,29 @@ export class CAccountService {
   constructor(@InjectModel(CAccountModel) private accountRepository: typeof CAccountModel) {}
 
   create(dto: CCreateAccountDto) {
-    return this.accountRepository.create({ ...dto });
+    return this.accountRepository.create({ balance: dto.balance.toString() });
   }
 
   findAll() {
     return this.accountRepository.findAll();
   }
 
-  findOne(id: number) {
-    return this.accountRepository.findByPk(id, { attributes: ['balance'] });
+  async findOne(id: number) {
+    const account = await this.accountRepository.findByPk(id, { attributes: ['balance'] });
+
+    // 404 код ошибки - не найдено
+    if (!account) throw new HttpException(`Аккаунт с id=${id} не найден`, HttpStatus.NOT_FOUND);
+
+    return account;
   }
 
   async update(id: number, dto: CUpdateAccountDto) {
     const account = await this.accountRepository.findByPk(id);
 
     // 404 код ошибки - не найдено
-    if (!account) throw new HttpException(`Аккаунт с id=${id} не найден`, HttpStatus.NOT_FOUND)
+    if (!account) throw new HttpException(`Аккаунт с id=${id} не найден`, HttpStatus.NOT_FOUND);
 
-    await account.update(dto);
+    await account.update({ balance: dto.balance.toString() });
 
     return account;
   }
@@ -36,7 +41,7 @@ export class CAccountService {
     const account = await this.accountRepository.findByPk(id);
 
     // 404 код ошибки - не найдено
-    if (!account) throw new HttpException(`Аккаунт с id=${id} не найден`, HttpStatus.NOT_FOUND)
+    if (!account) throw new HttpException(`Аккаунт с id=${id} не найден`, HttpStatus.NOT_FOUND);
 
     await account.destroy();
 
