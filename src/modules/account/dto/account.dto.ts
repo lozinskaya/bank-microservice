@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { CCreateAccountDto } from './create-account.dto'
+
+import { CCreateAccountDto } from './create-account.dto';
 
 export class CAccountDto extends CCreateAccountDto {
   @ApiProperty({ description: 'ID аккаунта' })

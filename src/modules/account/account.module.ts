@@ -9,5 +9,6 @@ import { CAccountService } from './account.service';
   controllers: [CAccountController],
   providers: [CAccountService],
   imports: [SequelizeModule.forFeature([CAccountModel])],
+  exports: [CAccountService],
 })
 export class CAccountModule {}

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 
-import { account } from './modules';
+import { account, transfer } from './modules';
 
 const models = [...account.models];
-const modules = [...account.modules];
+const modules = [...account.modules, ...transfer.modules];
 
 @Module({
   imports: [
