@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 
+import { CAccountModel } from './account.model';
 import { CCreateAccountDto } from './dto/create-account.dto';
 import { CUpdateAccountDto } from './dto/update-account.dto';
 
 @Injectable()
 export class CAccountService {
-  create(createAccountDto: CCreateAccountDto) {
-    return 'This action adds a new account';
+  constructor(@InjectModel(CAccountModel) private accountRepository: typeof CAccountModel) {}
+
+  create(dto: CCreateAccountDto) {
+    return this.accountRepository.create({ ...dto });
   }
 
   findAll() {
@@ -17,7 +21,7 @@ export class CAccountService {
     return `This action returns a #${id} account`;
   }
 
-  update(id: number, updateAccountDto: CUpdateAccountDto) {
+  update(id: number, dto: CUpdateAccountDto) {
     return `This action updates a #${id} account`;
   }
 
