@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 
 import { CAccountModel } from './account.model';
@@ -24,7 +24,10 @@ export class CAccountService {
   async update(id: number, dto: CUpdateAccountDto) {
     const account = await this.accountRepository.findByPk(id);
 
-    await account?.update(dto);
+    // 404 код ошибки - не найдено
+    if (!account) throw new HttpException(`Аккаунт с id=${id} не найден`, HttpStatus.NOT_FOUND)
+
+    await account.update(dto);
 
     return account;
   }
@@ -32,7 +35,10 @@ export class CAccountService {
   async remove(id: number) {
     const account = await this.accountRepository.findByPk(id);
 
-    await account?.destroy();
+    // 404 код ошибки - не найдено
+    if (!account) throw new HttpException(`Аккаунт с id=${id} не найден`, HttpStatus.NOT_FOUND)
+
+    await account.destroy();
 
     return { success: true };
   }
