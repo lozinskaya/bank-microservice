@@ -17,6 +17,20 @@ async function bootstrap() {
 
   SwaggerModule.setup('api', app, document);
 
+  app.useGlobalPipes(
+    new ValidationPipe({
+      exceptionFactory: (errors) => {
+        const errorsValue = errors.reduce((acc, error) => {
+          const message = Object.values(error.constraints || {}).join(',');
+
+          return { ...acc, [error.property]: message };
+        }, {});
+
+        return new BadRequestException(errorsValue);
+      },
+    })
+  );
+
   await app.listen(PORT, () => console.log(`Service started on port ${PORT}`));
 }
 bootstrap();
